@@ -1,7 +1,11 @@
 const environment = process.env.NODE_ENV;
 let base_local_url = 'http://localhost:3001';
 let base_backend_url = 'http://localhost:5000';
-if(environment==='docker') {
+
+// Use environment variable for production API URL
+if(environment==='production') {
+  base_backend_url = process.env.REACT_APP_API_URL || 'https://your-backend-url.vercel.app/api/v1';
+} else if(environment==='docker') {
   base_local_url = 'http://user-frontend-app:3001';
   base_backend_url = 'http://backend:5000';
 }
